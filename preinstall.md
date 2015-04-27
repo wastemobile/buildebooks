@@ -27,7 +27,7 @@ Mac 上最好用的套件安裝與管理工具，參考[官網](http://brew.sh/i
 2. 進入該目錄 `cd ~/.nvm`。
 3. 接著輸入
 
-    git checkout `git describe --abbrev=0 --tags`
+    git checkout \`git describe --abbrev=0 --tags\`
 
 這樣就會使用最新穩定版的 nvm。
 
