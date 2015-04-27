@@ -13,7 +13,7 @@
 
 Mac 上最好用的套件安裝與管理工具，參考[官網](http://brew.sh/index_zh-tw.html)說明，拷貝安裝指令到終端機，依照指示完成安裝即可。
 
-平時三不五時在終端機輸入 `brew update && brew upgrade` 即可自動更新。
+平日三不五時在終端機輸入 `brew update && brew upgrade` 即可自動更新。
 
 ### Git
 
@@ -51,3 +51,5 @@ Mac 上最好用的套件安裝與管理工具，參考[官網](http://brew.sh/i
 
 1. `brew install pandoc` 安裝 Pandoc。
 2. `brew install kindlegen` 安裝 Kindlegen。
+
+輸入 `pandoc -v` 與 `kindlegen -releasenotes` 分別確認目前版本，使用 Homebrew 安裝的好處就是路徑都替你設置好了，如果是自行下載 kindlegen 程式，就要自己確認擺放路徑。總之，如果打開終端機輸入上面確認版本指令無法正常顯示時，製書也不會成功的。

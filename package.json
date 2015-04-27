@@ -1,8 +1,9 @@
 {
   "name": "buildebooks",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build ebooks using Pandoc and Kindlegen",
   "main": "index.js",
+  "repository": "https://github.com/wastemobile/buildebooks.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,6 +15,19 @@
     "kindlegen",
     "kindle"
   ],
-  "author": "wastemobile",
-  "license": "ISC"
+  "author": "wastemobile (http://wastemobile.github.io)",
+  "license": "ISC",
+  "dependencies": {
+    "front-matter": "^1.0.0",
+    "junk": "^1.0.1",
+    "log": "^1.4.0",
+    "lowdb": "^0.7.3",
+    "mkdirp": "^0.5.0",
+    "mv": "^2.0.3",
+    "node-uuid": "^1.4.3",
+    "pdc": "^0.2.2",
+    "temp": "^0.8.1",
+    "underscore": "^1.8.3",
+    "underscore-db": "^0.8.1"
+  }
 }
