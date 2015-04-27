@@ -1,0 +1,19 @@
+{
+  "name": "buildebooks",
+  "version": "0.1.0",
+  "description": "Build ebooks using Pandoc and Kindlegen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ebook",
+    "epub",
+    "mobi",
+    "pandoc",
+    "kindlegen",
+    "kindle"
+  ],
+  "author": "wastemobile",
+  "license": "ISC"
+}
