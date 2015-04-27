@@ -32,6 +32,7 @@ module.exports = function() {
 
     var startPath = path.join('./', config.base);
     var filter = config.index;
+    //prebuild(config, startPath, filter);
     multi(prebuild(config, startPath, filter));
   });
   
