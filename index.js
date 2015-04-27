@@ -5,7 +5,7 @@ var fm = require('front-matter');
 var path = require('path');
 var _ = require('underscore');
 var prebuild = require('./lib/prebuild');
-var build = require('./lib/build');
+var multi = require('./lib/build').multi;
 
 module.exports = function() {
 
@@ -18,7 +18,7 @@ module.exports = function() {
         "base": 'projects',
         "dest": 'books',
         "index": 'book.md',
-        "metadata": 'metadata.md',
+        "metafile": 'metadata.md',
         "style": 'default'
       };
     } else {
@@ -26,13 +26,13 @@ module.exports = function() {
       config.base = config.base || 'projects';
       config.dest = config.dest || 'books';
       config.index = config.index || 'book.md';
-      config.metadata = config.metadata || 'metadata.md';
+      config.metafile = config.metafile || 'metadata.md';
       config.style = config.style || 'default';
     }
 
     var startPath = path.join('./', config.base);
     var filter = config.index;
-    build(prebuild(config, startPath, filter));
+    multi(prebuild(config, startPath, filter));
   });
   
 };

@@ -1,11 +1,8 @@
 {
   "name": "buildebooks",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Build ebooks using Pandoc and Kindlegen",
-  "main": "buildebooks.js",
-  "bin": {
-      "buildebooks": "buildebooks.js"
-    },
+  "main": "index.js",
   "repository": "https://github.com/wastemobile/buildebooks.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
