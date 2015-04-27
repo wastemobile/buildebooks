@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 var fs = require('fs');
 var fm = require('front-matter');
 var path = require('path');
