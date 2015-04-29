@@ -27,7 +27,8 @@ module.exports = function() {
       config.dest = config.dest || 'books';
       config.index = config.index || 'book.md';
       config.metafile = config.metafile || 'metadata.md';
-      config.style = config.style || 'default';
+      config.stylesFolder = config.stylesFolder || 'styles';
+      config.root = process.cwd();
     }
 
     var startPath = path.join('./', config.base);
