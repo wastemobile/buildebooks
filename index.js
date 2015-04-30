@@ -10,6 +10,7 @@ var multi = require('./lib/build').multi;
 module.exports = function() {
 
   var config = {};
+  var rootDir = process.cwd();
 
   fs.readFile('./config.md', 'utf8', function(err, data){
     if (err) {
@@ -19,7 +20,8 @@ module.exports = function() {
         "dest": 'books',
         "index": 'book.md',
         "metafile": 'metadata.md',
-        "style": 'default'
+        "stylesFolder": 'styles',
+        "root": rootDir
       };
     } else {
       config = fm(data).attributes;
@@ -28,7 +30,7 @@ module.exports = function() {
       config.index = config.index || 'book.md';
       config.metafile = config.metafile || 'metadata.md';
       config.stylesFolder = config.stylesFolder || 'styles';
-      config.root = process.cwd();
+      config.root = rootDir;
     }
 
     var startPath = path.join('./', config.base);
