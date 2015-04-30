@@ -5,7 +5,7 @@ Build Ebooks
 
 你可以下載 [bookfactory](https://github.com/wastemobile/bookfactory)，裡面有簡單的範例資料。
 
-建置中。
+建置中，預計 0.3 版之前均處於不穩定開發階段。
 
 ### 安裝
 
