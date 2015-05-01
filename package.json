@@ -1,6 +1,6 @@
 {
   "name": "buildebooks",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Build ebooks using Pandoc and Kindlegen",
   "main": "index.js",
   "repository": "https://github.com/wastemobile/buildebooks.git",

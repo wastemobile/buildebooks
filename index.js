@@ -12,31 +12,40 @@ module.exports = function() {
   var config = {};
   var rootDir = process.cwd();
 
-  fs.readFile('./config.md', 'utf8', function(err, data){
-    if (err) {
-      console.log('找不到 config.md，使用預設值嘗試中...');
-      config = {
-        "base": 'projects',
-        "dest": 'books',
-        "index": 'book.md',
-        "metafile": 'metadata.md',
-        "stylesFolder": 'styles',
-        "root": rootDir
-      };
-    } else {
-      config = fm(data).attributes;
-      config.base = config.base || 'projects';
-      config.dest = config.dest || 'books';
-      config.index = config.index || 'book.md';
-      config.metafile = config.metafile || 'metadata.md';
-      config.stylesFolder = config.stylesFolder || 'styles';
-      config.root = rootDir;
-    }
+  try {
+    var data = fs.readFileSync('./config.md', 'utf8');
+    _.extend(config, fm(data).attributes);
+    config.root = rootDir;
+    config.base = config.base || 'projects';
+    config.dest = config.dest || 'books';
+    config.index = config.index || 'book.md';
+    config.metafile = config.metafile || 'metadata.md';
+    config.stylesFolder = config.stylesFolder || 'styles';
+  } catch (err) {
+    console.log('Not found config.md, try default setting...');
+    config = {
+      "base": 'projects',
+      "dest": 'books',
+      "index": 'book.md',
+      "metafile": 'metadata.md',
+      "stylesFolder": 'styles',
+      "root": rootDir
+    };
+  }
 
-    var startPath = path.join('./', config.base);
-    var filter = config.index;
-    //prebuild(config, startPath, filter);
-    multi(prebuild(config, startPath, filter));
-  });
-  
+  var startPath = path.join('./', config.base);
+  var filter = config.index;
+
+  try {
+    var checkStart = fs.statSync(startPath);
+    try {
+      var books = prebuild(config, startPath, filter);
+      multi(books);
+    } catch (err) {
+      console.log('prebuild err: ' + err);
+    }
+  } catch (err) {
+    console.log('No specified projects folder, check your config.');
+  }
+    
 };
