@@ -25,9 +25,10 @@ Build Ebooks
 2. 打開終端機，不管在單書目錄、多書目錄，或使用總專案管理目錄，都只需要輸入 `buildebooks` 命令就能自動判斷、製作電子書。
 3. 未安裝在全域執行環境就無法使用終端機指令，你需要自行建立 Node 指令檔，例如：
 
-    var build = require('buildebooks').bes;
-
-    build();
+  ```
+  var build = require('buildebooks').bes;
+  build();
+  ```
 
 4. 製書時輸入 `node index.js` 即可運作。
 
