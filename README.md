@@ -1,30 +1,88 @@
 Build Ebooks
 ============
 
-> Mac 上需要預先準備好必要程式，參考 [預裝程序](https://github.com/wastemobile/buildebooks/blob/master/preinstall.md)。
+> Mac 上需要預先準備好必要程式，參考 [預裝程序](https://github.com/wastemobile/buildebooks/blob/master/preinstall.md)。打開終端機在任何目錄輸入下列三條指令，都必須運作正常、顯示目前版本，否則製書程式無法執行成功。
 
-你可以下載 [bookfactory](https://github.com/wastemobile/bookfactory)，裡面有簡單的範例資料。
+```
+  $ npm -v //檢視 NPM 版本（2.8.4）。
+  $ pandoc -v //檢視 Pandoc 版本（1.13.2）。
+  $ kindlegen -releasenotes //檢視 Kindlegen 版本（V2.9）。
+```
 
-建置中，預計 0.3 版之前均處於不穩定開發階段。
+持續不穩定建置中。
+
+## 0.2.x
 
 ### 安裝
 
-1. `npm install buildebooks'
-2. 在目錄下建立一個 `index.js`，只需要下面兩行：
+1. `npm install -g buildebooks' 安裝於全域環境以便執行終端機指令模式。（如果遵照 [預裝程序](https://github.com/wastemobile/buildebooks/blob/master/preinstall.md) 的安裝方式，就不需要 `sudo`；萬一 Node.js 的安裝方式不同，可以嘗試使用 `sudo npm install -g buildebooks` 安裝。）
+2. 打開終端機，不管在單書目錄、多書目錄，或使用總專案管理目錄，都只需要輸入 `buildebooks` 命令就能自動判斷、製作電子書。
+3. 未安裝在全域執行環境就無法使用終端機指令，你需要自行建立 Node 指令檔，例如：
 
-    var build = require('buildebooks');
-    
+    var build = require('buildebooks').bes;
+
     build();
 
-3. 製書時輸入 `node index.js`。
+4. 製書時輸入 `node index.js` 即可運作。
+
+> 安裝於全域（with `-g`）之後，任意目錄執行 `buildebook` 或 `buildebooks` 均可。輸入 `buildebook(s) -v` 或 `--version` 會顯示目前版本。由於仍處於不穩定開發階段，常常運行 `npm update -g` 獲得最近的更新版本。
+
+### 運作於單書目錄
+
+```
+(1) Single Book Folder
+/yourfolder
+  /book.md //製書索引，沒有這個檔案就不會製作電子書
+  /metadata.md //詮釋資料
+  /intro.md
+  /ch1.md
+  /ch2.md
+  /ch3.md
+  /Cover.png
+  /epub.css
+  /style/default.css
+  /image/cover.jpg
+  /part2/another.md
+```  
+
+> 你可以自由使用次目錄擺放內容、素材，只要在製書索引中添加正確的路徑，例如 `images/cover.jpg`, `style/stylesheet.css` 或 `part1/mycontent.md`, `part2/another.md` 均可。
+
+```
+---
+# 唯一必要的設定
+files:
+  - intro.md
+  - ch1.md
+  - ch2.md
+  - ch3.md
+# 自訂電子書檔名稱，未設定會使用上層目錄名稱（此例就是 `yourfolder`）
+# filename: "mybook"
+# 關閉製作。未設定時的預設值是 true
+# build: false
+# 同步製作 Kindle 電子書，預設值是 false
+# kindle: true
+# 編輯版本號
+# edit_version: "0.2"
+# 是否複製成正式發行版本，預設是 false
+# public: false
+# 發行版本號
+# release_verson: "1.0"
+# 試讀版本（public 設為 true 時才會製作）
+sample:
+  - intro.md
+  - ch1.md
+---
+```
 
 ### 基本設定（config.md）
+
+> 0.2.x 之後，非單書目錄才會用到 `config.md`。
 
 使用 `config.md` 設定：擺放書籍專案的目錄（base）、擺放電子書的目錄（dest）、書籍索引檔的名稱（index）以及預設讀取書籍資料的檔案名稱（metafile）。可以沒有這個檔案，系統就會依照預設值尋找。
 
 ```
 ---
-# 擺放所有書籍專案的目錄
+# 擺放所有書籍專案的目錄（使用集中目錄的情境）
 base: 'projects'
 # 預設擺放製成書檔的目錄
 dest: 'books'
@@ -41,6 +99,35 @@ stylesFolder: 'styles'
 - 書籍專案內使用一個 `book.md` 作為製書指引（索引）檔。
 - 書籍（詮釋）資料檔是必要的。
 
+除了上面提到的「單書目錄」之外，以下兩種目錄也都可以自由使用：
+
+```
+(2) Multi-Books folder
+/somefolder
+  /book1
+  /book2
+  /book3
+  /styles （可以使用共用樣式目錄）
+  config.md （可以使用設定檔，`base` 設定在此狀況下無效）
+```
+
+使用終端機在該目錄下執行 `[ ~/somefolder] $ buildebooks` 即可。
+
+```
+(3) Center Projects folder
+/minifactory
+  /projects
+    /book1
+    /book2
+    /book3
+  /styles （共用樣式目錄）
+  config.md （可以使用設定檔）
+```
+
+使用終端機在該目錄下執行 `[ ~/minifactory] $ buildebooks` 即可。
+
+> 安裝在全域的好處就是：你的書籍專案目錄不再有什麼 `index.js` 或是 `node_modules` 目錄之類的玩意，完全只有與內容相關的檔案，清爽許多。
+
 ### 製書索引檔（book.md 或自訂名稱）
 
 某些製書程序要求使用固定的檔名與順序（例如 01-xxx, 02-xxx...），不太人性且增加了麻煩。Leanpub 與 GitBook 使用的模式好一些：透過一個索引檔案，告訴系統要使用哪些內容檔案製作電子書。
@@ -50,20 +137,6 @@ stylesFolder: 'styles'
 1. 書籍專案目錄下，可以自由擺放各種檔案，草稿、參考文件、編輯註記等等，無需受限任何規則。
 2. 只有那些寫進索引檔的內容文件，才會影響電子書的製作。
 3. 索引檔還可以處理一本書製作時的獨立配置，像是一些開關，要不要暫時關閉製書程序、要不要同步生成 Kindle 電子書、設定編輯版本等等。
-
-
-最低限度的製書索引檔：
-
-```
-files:
-  - foreword.md
-  - introduction.md
-  - ch1.md
-  - ch2.md
-  - notes/box01.md
-  - ch3.md
-  - postcontent/epilogue.md
-```
 
 製書索引檔至少需要指定內容檔案（files），依序構成書籍的內容（目錄）。
 
