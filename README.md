@@ -11,6 +11,12 @@ Build Ebooks
 
 持續不穩定建置中。
 
+```
+  $ npm install -g buildebooks
+  $ buildebooks -v //檢視目前版本
+  $ npm update -g //更新
+```
+
 ## 0.2.x
 
 ### 安裝
