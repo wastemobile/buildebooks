@@ -15,7 +15,7 @@ Build Ebooks
 
 ### 安裝
 
-1. `npm install -g buildebooks' 安裝於全域環境以便執行終端機指令模式。（如果遵照 [預裝程序](https://github.com/wastemobile/buildebooks/blob/master/preinstall.md) 的安裝方式，就不需要 `sudo`；萬一 Node.js 的安裝方式不同，可以嘗試使用 `sudo npm install -g buildebooks` 安裝。）
+1. `npm install -g buildebooks` 安裝於全域環境以便執行終端機指令模式。（如果遵照 [預裝程序](https://github.com/wastemobile/buildebooks/blob/master/preinstall.md) 的安裝方式，就不需要 `sudo`；萬一 Node.js 的安裝方式不同，可以嘗試使用 `sudo npm install -g buildebooks` 安裝。）
 2. 打開終端機，不管在單書目錄、多書目錄，或使用總專案管理目錄，都只需要輸入 `buildebooks` 命令就能自動判斷、製作電子書。
 3. 未安裝在全域執行環境就無法使用終端機指令，你需要自行建立 Node 指令檔，例如：
 
