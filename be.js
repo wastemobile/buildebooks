@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
 var _ = require('underscore');
+var shell = require('shelljs');
 var getIndex = require('./lib/getindex');
 var getConfig = require('./lib/getconfig');
 var build = require('./lib/build');
@@ -10,9 +11,19 @@ var pjson = require('./package.json');
 var userArgs = process.argv.splice(2);
 var runPattern = userArgs[0];
 
+//check
 if (runPattern === "-v" || runPattern === "--version") {
   console.log(pjson.version);
   process.exit(1);
+}
+
+if (!shell.which('pandoc')) {
+  shell.echo('You need install pandoc first to execute buildebooks program.');
+  process.exit(1);
+}
+
+if (!shell.which('kindlegen')) {
+  shell.echo('Not found kindelgen, you cannot build kindle ebooks.');
 }
 
 try {

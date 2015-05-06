@@ -1,6 +1,6 @@
 {
   "name": "buildebooks",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Build ebooks using Pandoc and Kindlegen",
   "main": "index.js",
   "preferGlobal": true,
@@ -30,6 +30,7 @@
     "mv": "^2.0.3",
     "node-uuid": "^1.4.3",
     "pdc": "^0.2.2",
+    "shelljs": "^0.4.0",
     "temp": "^0.8.1",
     "underscore": "^1.8.3"
   }
