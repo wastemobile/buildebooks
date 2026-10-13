@@ -22,10 +22,6 @@ if (!shell.which('pandoc')) {
   process.exit(1);
 }
 
-if (!shell.which('kindlegen')) {
-  shell.echo('Not found kindelgen, you cannot build kindle ebooks.');
-}
-
 try {
   var book = getIndex();
   if (book.build) {

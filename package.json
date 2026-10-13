@@ -1,7 +1,7 @@
 {
   "name": "buildebooks",
-  "version": "0.2.2",
-  "description": "Build ebooks using Pandoc and Kindlegen",
+  "version": "0.3.0",
+  "description": "Build ebooks using Pandoc",
   "main": "index.js",
   "preferGlobal": true,
   "bin": {
@@ -15,10 +15,7 @@
   "keywords": [
     "ebook",
     "epub",
-    "mobi",
-    "pandoc",
-    "kindlegen",
-    "kindle"
+    "pandoc"
   ],
   "author": "wastemobile (http://wastemobile.github.io)",
   "license": "ISC",

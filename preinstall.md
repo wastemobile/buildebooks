@@ -3,7 +3,7 @@
 
 ## 終端機篇
 
-在 Mac 上必須預先安裝好 Node.js（含 NPM 套件管理）、Homebrew、Git 以及 Command Line Tools for Xcode，以及製書需要使用的 Pandoc 與 Kindlegen。
+在 Mac 上必須預先安裝好 Node.js（含 NPM 套件管理）、Homebrew、Git 以及 Command Line Tools for Xcode，以及製書需要使用的 Pandoc。
 
 ### Command Line Tools for Xcode
 
@@ -49,14 +49,13 @@ Mac 上最好用的套件安裝與管理工具，參考[官網](http://brew.sh/i
 
 安裝 Node.js 時已經連帶安裝了 NPM 套件管理程式，但版本很舊，所以最好先升級一下 NPM，輸入 `npm install npm -g`，再以 `npm -v` 指令確認版本（應該是 2.x.x）。
 
-### Pandoc 與 Kindlegen
+### Pandoc
 
 透過 Homebrew 安裝依然是最簡單無痛的做法。
 
-1. `brew install pandoc` 安裝 Pandoc。
-2. `brew install kindlegen` 安裝 Kindlegen。
+`brew install pandoc` 安裝 Pandoc。
 
-輸入 `pandoc -v` 與 `kindlegen -releasenotes` 分別確認目前版本，使用 Homebrew 安裝的好處就是路徑都替你設置好了，如果是自行下載 kindlegen 程式，就要自己確認擺放路徑。總之，如果打開終端機輸入上面確認版本指令無法正常顯示時，製書也不會成功的。
+輸入 `pandoc -v` 確認目前版本，使用 Homebrew 安裝的好處就是路徑都替你設置好了。總之，如果打開終端機輸入上面確認版本指令無法正常顯示時，製書也不會成功的。
 
 ## 簡易安裝篇
 
@@ -66,10 +65,6 @@ Mac 上最好用的套件安裝與管理工具，參考[官網](http://brew.sh/i
 2. Pandoc [下載位置](https://github.com/jgm/pandoc/releases)
 
 下載後就是點擊兩下，跟著指示說明一路到底就是了。
-
-Kindlegen 因為是單純的命令列工具，就沒有簡便的點擊安裝程式可用，雖然就是一個檔案，比較麻煩的是要讓系統隨時隨地都能使用，還得在意路徑的正確設置。倘若以 EPUB 為主，轉製 Kindle mobi 版本只是偶一為之，另一個方法就是下載 [Kindle Previewer](http://www.amazon.com/gp/feature.html/?docId=1000765261) 這個能在電腦上觀看 Kindle 電子書的軟體，它的功能選單中也有轉換 EPUB 的功能。
-
-> Mac 10.8 之後的系統安裝 Kindle Previewer 時，會提示先下載安裝 X11，也只能跟著一路裝到底了。
 
 當然還是得使用終端機輸入點東西，例如上面的 NPM 升級程序 `npm install npm -g`，或是安裝 buildebooks 製書工具 `npm install -g buildebooks`。
 

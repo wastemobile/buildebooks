@@ -1,12 +1,11 @@
 Build Ebooks
 ============
 
-> Mac 上需要預先準備好必要程式，參考 [預裝程序](https://github.com/wastemobile/buildebooks/blob/master/preinstall.md)。打開終端機在任何目錄輸入下列三條指令，都必須運作正常、顯示目前版本，否則製書程式無法執行成功。
+> Mac 上需要預先準備好必要程式，參考 [預裝程序](https://github.com/wastemobile/buildebooks/blob/master/preinstall.md)。打開終端機在任何目錄輸入下列兩條指令，都必須運作正常、顯示目前版本，否則製書程式無法執行成功。
 
 ```
   $ npm -v //檢視 NPM 版本（2.8.4）。
   $ pandoc -v //檢視 Pandoc 版本（1.13.2）。
-  $ kindlegen -releasenotes //檢視 Kindlegen 版本（V2.9）。
 ```
 
 持續不穩定建置中。
@@ -17,7 +16,7 @@ Build Ebooks
   $ npm update -g //更新
 ```
 
-## 0.2.x
+## 0.3.x
 
 ### 安裝
 
@@ -66,8 +65,6 @@ files:
 # filename: "mybook"
 # 關閉製作。未設定時的預設值是 true
 # build: false
-# 同步製作 Kindle 電子書，預設值是 false
-# kindle: true
 # 編輯版本號
 # edit_version: "0.2"
 # 是否複製成正式發行版本，預設是 false
@@ -143,7 +140,7 @@ stylesFolder: 'styles'
 
 1. 書籍專案目錄下，可以自由擺放各種檔案，草稿、參考文件、編輯註記等等，無需受限任何規則。
 2. 只有那些寫進索引檔的內容文件，才會影響電子書的製作。
-3. 索引檔還可以處理一本書製作時的獨立配置，像是一些開關，要不要暫時關閉製書程序、要不要同步生成 Kindle 電子書、設定編輯版本等等。
+3. 索引檔還可以處理一本書製作時的獨立配置，像是一些開關，要不要暫時關閉製書程序、設定編輯版本等等。
 
 製書索引檔至少需要指定內容檔案（files），依序構成書籍的內容（目錄）。
 
@@ -152,7 +149,6 @@ stylesFolder: 'styles'
 - `filename` 未設定時，書籍專案目錄名稱就是書檔名稱。
 - `metafile` 書籍詮釋資料檔是必要的，預設會尋找 `metadata.md`，你可以自由指定。
 - `build` 設置為 `true` 或 `false`，未設定的預設值為 `true`，也就是在執行程序時會自動製作電子書，當你還在書寫或編輯流程，或是已經發行一個正式版本，暫時不需要每次都製作、覆蓋電子書檔時，可以選擇將其關閉。
-- `kindle` 設置為 `true/false`，預設為 `false`。開啟這個開關會在製書時同步產生 Kindle 版本（使用 Kindlegen 轉製）。
 - `edit_version` 編輯版本設定。
 - `stylesheet` 使用的樣式檔，在此處設置的優先權比詮釋資料檔更高，在編輯、修正測試與改版的情境下比較方便。指定樣式檔時，專案目錄找不到，會去比對共用樣式目錄。
 - `cover-image` 指定封面圖檔，在此處設置的優先權比詮釋資料檔更高，便利編輯與改版過程的使用。
@@ -206,10 +202,16 @@ identifier:
 
 在製書索引中增加了一個 `sample` 的設定，方法與 `files` 相同。這是準備與發行功能搭配的選項，因此 `publish` 也必須設置為 `true`。
 
-簡單的說，就是製作一個「試讀版本」，可以自由指定要擺放的內容章節。檔名後以 `-sample` 區隔，命名原則與正式版（含版本號）一致，同時適用於 EPUB 與 Kindle 版本的製作（因此若指定 `publish: true` 且設置了 `sample` 要使用的內容，一次就會產生四個書檔。
+簡單的說，就是製作一個「試讀版本」，可以自由指定要擺放的內容章節。檔名後以 `-sample` 區隔，命名原則與正式版（含版本號）一致（因此若指定 `publish: true` 且設置了 `sample` 要使用的內容，一次就會產生兩個書檔）。
 
 ### 檢查可用程式 0.2.1
 
-加入檢查系統是否已安裝 Pandoc 與 Kindlegen。
+加入檢查系統是否已安裝 Pandoc，找不到會提示並跳出。
 
-找不到 Pandoc 會提示並跳出；找不到 Kindlegen 則顯示警告訊息。
+### 移除 Kindle 製作 0.3.0
+
+Amazon 已停止提供 Kindlegen，Kindle 也改為直接支援 EPUB，因此移除 `kindle` 選項與 Kindlegen 相依；製書索引中若仍留有 `kindle: true` 會被忽略。
+
+製作出的 EPUB 可以直接上傳 KDP，或透過 Send to Kindle 傳送到自己的 Kindle 閱讀。
+
+同時改用 Pandoc 2.0 之後的 `--css` 選項指定樣式表，需要 Pandoc 2.0 以上版本。
