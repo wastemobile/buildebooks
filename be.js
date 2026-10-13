@@ -14,7 +14,7 @@ var runPattern = userArgs[0];
 //check
 if (runPattern === "-v" || runPattern === "--version") {
   console.log(pjson.version);
-  process.exit(1);
+  process.exit(0);
 }
 
 if (!shell.which('pandoc')) {
